@@ -3,7 +3,7 @@
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
 #include "WiFi.h"
-
+const int relay = 32;
 #define AWS_IOT_PUBLISH_TOPIC   "/test/topic"
 #define AWS_IOT_SUBSCRIBE_TOPIC "esp32/device01"
  
@@ -49,32 +49,43 @@ void connectAWS()
   Serial.println("AWS IoT Connected!");
 }
  
-void publishMessage()
+void publishMessage(bool isPumpOn=false)
 {
   StaticJsonDocument<200> doc;
-  doc["humidity"] = 44;
-  doc["temperature"] = 36;
+  if(isPumpOn)doc["message"] ="on" ;
+  else if(!isPumpOn)doc["message"] ="off" ;
+
   char jsonBuffer[512];
   serializeJson(doc, jsonBuffer);
- 
   client.publish(AWS_IOT_PUBLISH_TOPIC, jsonBuffer);
 }
  
 void messageHandler(char* topic, byte* payload, unsigned int length)
 {
-  Serial.print("incoming: ");
-  Serial.println(topic);
- 
   StaticJsonDocument<200> doc;
 
   deserializeJson(doc, payload);
   const char* message = doc["message"];
+
+ if (strcmp(message, "on") == 0) { 
+    digitalWrite(relay, 0); 
+    Serial.println("Relay turned ON");
+    publishMessage(true);
+  } else if (strcmp(message, "off") == 0) {
+    digitalWrite(relay, 1); 
+    Serial.println("Relay turned OFF");
+    publishMessage();
+  } else {
+    Serial.println("Invalid message received");
+  }
   Serial.println(message);
-  publishMessage();
+  
 }
  
 void setup()
 {
+  pinMode(relay, OUTPUT);
+ digitalWrite(relay, 1); 
   Serial.begin(115200);
   connectAWS();
 

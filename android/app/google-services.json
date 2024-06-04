@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "315398314807",
+    "firebase_url": "https://iwatertestapp-default-rtdb.firebaseio.com",
+    "project_id": "iwatertestapp",
+    "storage_bucket": "iwatertestapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:315398314807:android:2838a72a9dc745806dd8b2",
+        "android_client_info": {
+          "package_name": "com.nimmalasujith.iwater"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "315398314807-llabms1k5gc23etp58fis1pvch1kad0k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3GdKSPRfG91Vt8rrjrqcay6q6BMjXtto"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "315398314807-llabms1k5gc23etp58fis1pvch1kad0k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
