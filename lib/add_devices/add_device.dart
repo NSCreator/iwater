@@ -59,6 +59,7 @@ class _AddDeviceState extends State<AddDevice> {
       TextEditingController();
   int _index = 0;
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
